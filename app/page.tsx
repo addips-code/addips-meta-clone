@@ -4,6 +4,7 @@ import ChatInput from "./ChatInput"
 import MessageList from "./MessageList"
 import { Providers } from "./Providers";
 
+
 async function HomePage() {
   const data = await fetch(`${process.env.VERCEL_URL || 'http://localhost:3000'}/api/getMessages`).then((res) => res.json());
 

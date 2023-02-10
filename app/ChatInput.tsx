@@ -6,9 +6,10 @@ import { Message } from "../typing";
 import useSWR from "swr";
 import { getServerSession } from "next-auth/next";
 import fetcher from "../utils/fetchMessages";
+import { Session } from "next-auth";
 
 type Props = {
-    session: Awaited<ReturnType<typeof getServerSession>>;
+    session: Session | null;
 }
 
 function ChatInput({session}: Props) {
@@ -29,13 +30,9 @@ function ChatInput({session}: Props) {
             id,
             message: messageToSend,
             created_at: Date.now(),
-            username: 'Adeola adeniji',
-            profilePic: 'https://links.papareact.com/jne',
-            email: 'adeola670@gmail.com'
-            // username: session?.user?.name!,
-            // profilePic: session?.user?.image!,
-
-            // email: session?.user?.email!,
+            username: session?.user?.name!,
+            profilePic: session?.user?.image!,
+            email: session?.user?.email!,
         }
     
 
