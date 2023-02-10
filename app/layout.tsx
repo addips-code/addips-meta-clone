@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import Header from './Header'
+import { Providers } from './Providers' 
 
 export default function RootLayout({
   children,
@@ -10,7 +11,7 @@ export default function RootLayout({
     <html>
       <head />
       <body>
-        <Header/>
+        <Header session={undefined}/>
         {children}
       </body>
     </html>
