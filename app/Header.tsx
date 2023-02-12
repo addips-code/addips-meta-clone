@@ -1,10 +1,22 @@
+"use client"
+import { Session } from "next-auth";
 import { getServerSession } from "next-auth/next";
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect, useState } from "react";
 import LogoutButton from "./LogoutButton";
 
-async function Header() {
-    const session = await getServerSession();
+function Header() {
+    const [session, setSession] = useState<null | Session>(null);
+
+    useEffect(() =>{
+        const getSession = async () => {
+            const res = await getServerSession();
+            setSession(res);
+        };
+        getSession();
+        return () => {};
+    }, []);
 
     if (session) return(
         
@@ -49,7 +61,7 @@ async function Header() {
             Sign In</Link>
         </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;
